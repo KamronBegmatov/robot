@@ -24,9 +24,8 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router){
-Route::get('redirect', 'App\Http\Controllers\UserFromGoogleController@redirect');
-Route::get('callback', 'App\Http\Controllers\UserFromGoogleController@callback');
-
+    Route::get('redirect', 'App\Http\Controllers\UserFromGoogleController@redirect');
+    Route::get('callback', 'App\Http\Controllers\UserFromGoogleController@callback');
 });
 
 Route::group([
@@ -39,6 +38,14 @@ Route::group([
     Route::post('logout', 'App\Http\Controllers\AuthController@logout');
     Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
     Route::post('me', 'App\Http\Controllers\AuthController@me');
+});
+
+Route::group([
+
+    'middleware' => 'api',
+
+], function ($router) {
+    Route::post('add_new_monitor', 'App\Http\Controllers\CreateNewMonitorController@add');
 
 });
 

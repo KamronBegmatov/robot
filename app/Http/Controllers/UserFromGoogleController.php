@@ -22,7 +22,7 @@ class UserFromGoogleController extends Controller
         try {
             $userFromGoogle = Socialite::driver('google')->stateless()->user();
         } catch (\Exception $e) {
-            return response()->json('sorry');
+            return response()->json('sorry, exception is thrown');
         }
         // only allow people with @company.com to login
 //            if(explode("@", $userFromGoogle->email)[1] !== 'company.com'){
