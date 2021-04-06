@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MonitorResource;
+use App\Models\Contact;
 use App\Models\Monitor;
 use App\Policies\MonitorPolicy;
 use Eloquent;
@@ -11,104 +13,73 @@ use Tymon\JWTAuth\Contracts\Providers\Auth;
 
 class MonitorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return Monitor[]|\Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
+    const ARR =['contacts'];
+
     public function index(Request $request)
     {
-        $monitors = Monitor::where('user_id', auth()->user()->id)->get();
+        $monitors = Monitor::where('user_id', auth()->user()->id)->with(self::ARR);
         if ($request->has('monitor_id')) {
-            return $monitors->firstWhere('id', $request->monitor_id);
+            $monitor = $monitors->findOrFail($request->monitor_id);
+            return new MonitorResource($monitor);
         }
-        $monitors = $monitors->sortBy('monitors.id')->groupBy('monitors.id');
-        return $monitors;
+        $monitors = $monitors->groupBy('monitors.id');
+        return MonitorResource::collection($monitors);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-//    /**
-//     * Store a newly created resource in storage.
-//     *
-//     * @param  \Illuminate\Http\Request  $request
-//     * @return \Illuminate\Http\Response
-//     */
     public function store(Request $request)
     {
         $user = auth()->user();
-        Monitor::create([
+        $monitor = Monitor::create([
             'user_id' => $user->id,
             'monitor_type' => $request->monitor_type,
             'name' => $request->name,
             'url' => $request->url,
             'interval' => $request->interval,
         ]);
-        return response()->json('Monitor added successfully!');
+        if($request->has('contact_id')){
+            $contact = Contact::findOrFail($request->contact_id);
+            $monitor->contacts()->sync($contact->id);
+        }
+        return new MonitorResource($monitor);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Monitor  $monitor
-     * @return Response
-     */
     public function show(Monitor $monitor)
     {
-        //
+        return new MonitorResource($monitor);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Monitor  $monitor
-     * @return Response
-     */
-    public function edit(Monitor $monitor)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Monitor $monitor
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function update(Request $request, Monitor $monitor)
     {
-            $monitor->update([
-                      'monitor_type' => $request->monitor_type,
-                      'name' => $request->name,
-                      'url' => $request->url,
-                      'interval' => $request->interval,
-                   ]);
-            return response()->json('Updated successfully!');
+        $request->validate([
+            'monitor_id' => 'exists:monitors,id',
+        ]);
+        if ($request->has('monitor_type')) {
+            $monitor->monitor_type = $request->monitor_type;
+        }
+        if ($request->has('name')) {
+            $monitor->name = $request->name;
+        }
+        if ($request->has('url')) {
+            $monitor->url = $request->url;
+        }
+        if ($request->has('interval')) {
+            $monitor->interval = $request->interval;
+        }
+        if($request->has('contact_ids')){
+            $monitor->contacts()->sync($request->contact_ids);
+        }
+        return new MonitorResource($monitor);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\Models\Monitor $monitor
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
-     */
     public function destroy(Monitor $monitor)
     {
-        if($monitor->delete()){
-            return response()->json('Monitor successfully deleted!');
+        try {
+            $monitor->contacts()->detach();
+            $monitor->delete();
+        } catch (\Exception $e) {
+            return response()->json('Something went wrong:(');
         }
-        return response()->json('Something went wrong:(');
+        return response()->json('Monitor successfully deleted!');
     }
+
 }

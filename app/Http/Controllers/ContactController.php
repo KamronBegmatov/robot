@@ -2,107 +2,76 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ContactResource;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return \Illuminate\Support\Collection
-     */
+
     public function index(Request $request)
     {
-        $contacts = Contact::create('user_id', auth()->user()->id)->get();
-        if ($request->has('contact_id')) {
-            return $contacts->firstWhere('id', $request->contact_id);
+        $contacts = Contact::where('user_id', auth()->user()->id);
+        $pages = 10;
+        if ($request->has('per_page')) {
+            $pages = $request->per_page;
         }
-        $contacts = $contacts->sortBy('products.id')->groupBy('products.id');
-        return $contacts;
+        return ContactResource::collection($contacts->paginate($pages));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function store(Request $request)
     {
-        $user = auth()->user();
-        Contact::create([
-            'user_id' => $user->id,
+        $request->validate([
+            'type' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'ups_downs' => 'required',
+        ]);
+        $contact = Contact::create([
+            'user_id' => auth()->user()->id,
             'type' => $request->type,
             'name' => $request->name,
             'email' => $request->email,
             'ups_downs' => $request->ups_downs,
         ]);
-        return response()->json('Contact added successfully!');
+        return new ContactResource($contact);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
+    public function show(Request $request, Contact $contact)
     {
-        //
+        $request->validate([
+            'contact_id' => 'exists:contacts,id',
+        ]);
+            return new ContactResource(Contact::findOrFail($request->contact_id));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function update(Request $request, Contact $contact)
     {
-        $contact->update([
-            'type' => $request->type,
-            'name' => $request->name,
-            'email' => $request->email,
-            'ups_downs' => $request->ups_downs,
+        $request->validate([
+            'contact_id' => 'exists:contacts,id',
         ]);
-        return response()->json('Contact updated successfully!');
+        if ($request->has('type')) {
+            $contact->type = $request->type;
+        }
+        if ($request->has('name')) {
+            $contact->name = $request->name;
+        }
+        if ($request->has('email')) {
+            $contact->email = $request->email;
+        }
+        if ($request->has('ups_downs')) {
+            $contact->ups_downs = $request->ups_downs;
+        }
+        return new ContactResource($contact);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function destroy(Contact $contact)
     {
-        if($contact->delete()){
-            return response()->json('Contact successfully deleted!');
+        try {
+            $contact->delete();
+                return response()->json('Contact successfully deleted!');
+        } catch (\Exception $e) {
+            return response()->json('Something went wrong:(');
         }
-        return response()->json('Something went wrong:(');
     }
 }

@@ -20,30 +20,30 @@ use Laravel\Socialite\Facades\Socialite;
 //});
 
 Route::prefix('auth')->middleware(['web'])->group(function ($router) {
-    Route::get('redirect', 'App\Http\Controllers\UserFromGoogleController@redirect');
-    Route::get('callback', 'App\Http\Controllers\UserFromGoogleController@callback');
+    Route::get('redirect', 'UserFromGoogleController@redirect');
+    Route::get('callback', 'UserFromGoogleController@callback');
 });
 
 Route::prefix('auth')->group(function () {
-    Route::post('registration', 'App\Http\Controllers\AuthController@registration');
-    Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');
-    Route::post('logout', 'App\Http\Controllers\AuthController@logout');
-    Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
-    Route::post('me', 'App\Http\Controllers\AuthController@me');
+    Route::post('registration', 'AuthController@registration');
+    Route::post('login', 'AuthController@login')->name('login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
 });
 
-Route::prefix('monitors')->group(function () {
-    Route::get('/', 'App\Http\Controllers\MonitorController@index');
-    Route::post('store', 'App\Http\Controllers\MonitorController@store');
-    Route::post('{monitor}/update', 'App\Http\Controllers\MonitorController@update')->middleware('can:update,monitor');
-    Route::post('{monitor}/destroy', 'App\Http\Controllers\MonitorController@destroy')->middleware('can:destroy,monitor');
+Route::prefix('monitor')->group(function () {
+    Route::get('/', 'MonitorController@index');
+    Route::post('store', 'MonitorController@store');
+    Route::post('update/{monitor}', 'MonitorController@update')->middleware('can:update,monitor');
+    Route::delete('destroy/{monitor}', 'MonitorController@destroy')->middleware('can:destroy,monitor');
 });
 
-Route::prefix('contacts')->group(function () {
-    Route::get('/', 'App\Http\Controllers\ContactController@index');
-    Route::post('store', 'App\Http\Controllers\ContactController@store');
-    Route::post('{contact}/update', 'App\Http\Controllers\ContactController@update')->middleware('can:update,contact');
-    Route::post('{contact}/destroy', 'App\Http\Controllers\ContactController@destroy')->middleware('can:destroy,contact');
+Route::prefix('contact')->group(function () {
+    Route::get('/', 'ContactController@index');
+    Route::post('store', 'ContactController@store');
+    Route::post('update/{contact}', 'ContactController@update')->middleware('can:update,contact');
+    Route::delete('destroy/{contact}', 'ContactController@destroy')->middleware('can:destroy,contact');
 });
 
 Route::get('checkstatus', 'App\Models\Monitor@checkStatus');
@@ -54,10 +54,10 @@ Route::get('checkstatus', 'App\Models\Monitor@checkStatus');
 //    'prefix' => 'auth'
 //
 //], function ($router) {
-//    Route::post('registration', 'App\Http\Controllers\AuthController@registration');
-//    Route::post('login', 'App\Http\Controllers\AuthController@login');
-//    Route::post('logout', 'App\Http\Controllers\AuthController@logout');
-//    Route::post('refresh', 'App\Http\Controllers\AuthController@refresh');
-//    Route::post('me', 'App\Http\Controllers\AuthController@me');
+//    Route::post('registration', 'AuthController@registration');
+//    Route::post('login', 'AuthController@login');
+//    Route::post('logout', 'AuthController@logout');
+//    Route::post('refresh', 'AuthController@refresh');
+//    Route::post('me', 'AuthController@me');
 //
 //});

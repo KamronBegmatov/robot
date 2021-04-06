@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDownTimesTable extends Migration
+class CreateMonitorContactTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateDownTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('down_times', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('monitor_id')->unsigned();
-            $table->foreign('monitor_id')->references('id')->on('monitors');
-            $table->string('status', 4);
+        Schema::create('monitor_contact', function (Blueprint $table) {
+            $table->bigInteger('monitor_id')->unsigned()->index();
+            $table->bigInteger('contact_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateDownTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('down_times');
+        Schema::dropIfExists('monitor_contact');
     }
 }

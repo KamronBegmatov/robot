@@ -18,16 +18,6 @@ class DownTimeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,21 +31,10 @@ class DownTimeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\DownTime  $downTime
+     * @param  \App\Models\DownTime  $down
      * @return \Illuminate\Http\Response
      */
-    public function show(DownTime $downTime)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\DownTime  $downTime
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(DownTime $downTime)
+    public function show(DownTime $down)
     {
         //
     }
@@ -64,10 +43,10 @@ class DownTimeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DownTime  $downTime
+     * @param  \App\Models\DownTime  $down
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DownTime $downTime)
+    public function update(Request $request, DownTime $down)
     {
         //
     }
@@ -75,10 +54,10 @@ class DownTimeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\DownTime  $downTime
+     * @param  \App\Models\DownTime  $down
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DownTime $downTime)
+    public function destroy(DownTime $down)
     {
         //
     }

@@ -38,7 +38,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  */
 class UserFromGoogle extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
