@@ -1,5 +1,5 @@
 
-
+/* SEND MAIL IF WEBSITE IS DOWN */
 <p>Hi,</p>
 <br>
 <p>The monitor {{$name}} ({{$url}}) is currently DOWN (Connection Timeout).</p>

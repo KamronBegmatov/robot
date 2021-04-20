@@ -28,6 +28,6 @@ class CreateDownTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('downs');
+        Schema::dropIfExists('down_times');
     }
 }

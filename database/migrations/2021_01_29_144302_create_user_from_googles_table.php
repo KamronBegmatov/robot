@@ -18,6 +18,7 @@ class CreateUserFromGooglesTable extends Migration
             $table->string('name');
             $table->string('google_id');
             $table->string('email')->unique();
+            $table->string('timezone');
             $table->string('password')->nullable();
             $table->string('avatar')->nullable();
             $table->string('avatar_original')->nullable();

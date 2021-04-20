@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Mail\NotifyStatus;
-use Carbon\Carbon;
+use App\Mail\NotifyDownStatus;
+use App\Mail\NotifyUpStatus;
 use Eloquent;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -41,6 +40,10 @@ class Monitor extends Model
 
     protected $guarded = [];
 
+    CONST DOWN = 0;
+    CONST UP = 1;
+    CONST UP_DOWN = 2;
+
     public function contacts()
     {
         return $this->belongsToMany(Contact::class,'monitor_contact');
@@ -71,15 +74,23 @@ class Monitor extends Model
             $url = $monitor->url;
             if (Monitor::url_test($url)) {
                 array_push($success, $url);
+                $contact_id = DB::table('monitor_contact')->where('monitor_id', $monitor->id)->first()->contact_id;
+                $contact = Contact::findOrFail($contact_id);
+                if($contact->ups_downs == self::UP || $contact->ups_downs == self::UP_DOWN) {
+                    $monitor = Monitor::findOrFail($monitor->id);
+                    Mail::to($contact->email)->send(new NotifyUpStatus($monitor));
+                }
             } else {
                 $down_time = DownTime::create([
                     'monitor_id' => $monitor->id,
                     'down' => 1,
                 ]);
                 $contact_id = DB::table('monitor_contact')->where('monitor_id', $monitor->id)->first()->contact_id;
-                $email = Contact::findOrFail($contact_id)->email;
-                $monitor = Monitor::findOrFail($monitor->id);
-                Mail::to($email)->send(new NotifyStatus($monitor, $down_time));
+                $contact = Contact::findOrFail($contact_id);
+                if($contact->ups_downs == self::DOWN || $contact->ups_downs == self::UP_DOWN) {
+                    $monitor = Monitor::findOrFail($monitor->id);
+                    Mail::to($contact->email)->send(new NotifyDownStatus($monitor, $down_time));
+                }
             }
         }
     }

@@ -20,21 +20,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6a173eb-44d6-4265-a3c8-b449509182e7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/emails/notify_up_status.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/robot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/robot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DownTimeController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MonitorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MonitorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/DownTime.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/NotifyStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/NotifyDownStatus.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Monitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Monitor.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/UserFromGoogle.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/UserFromGoogle.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_01_153602_create_monitors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_01_153602_create_monitors_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_16_202906_create_down_times_table.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_29_144302_create_user_from_googles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_29_144302_create_user_from_googles_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_27_115405_create_down_times_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_27_115405_create_down_times_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/emails/notify_status.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/notify_down_status.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,6 +185,8 @@
       <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
       <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
       <path value="$PROJECT_DIR$/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor/league/event" />
+      <path value="$PROJECT_DIR$/vendor/irazasyed/telegram-bot-sdk" />
     </include_path>
   </component>
   <component name="ProjectId" id="1nYIhqpepLljHGwsZGfGr2hpqMZ" />
@@ -223,7 +228,8 @@
       <workItem from="1613025555156" duration="34804000" />
       <workItem from="1616238503360" duration="2547000" />
       <workItem from="1616504088270" duration="777000" />
-      <workItem from="1616561121103" duration="56958000" />
+      <workItem from="1616561121103" duration="58668000" />
+      <workItem from="1618222272549" duration="37678000" />
     </task>
     <servers />
   </component>

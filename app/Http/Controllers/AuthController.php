@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -37,20 +38,18 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
-    /**
-     * User registration
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function registration(Request $request)
     {
         $name = $request->name;
         $email = $request->email;
+        $date = new DateTime();
+        $timezone = $date->getTimezone();
         $password = $request->password;
 
         $user = new User();
         $user->name = $name;
         $user->email = $email;
+        $user->timezone = $timezone;
         $user->password = Hash::make($password);
         $user->save();
 
@@ -58,7 +57,7 @@ class AuthController extends Controller
 
         //return $this->respondWithToken($token);
 
-        return response()->json(['message' => 'Successfully registration!']);
+        return response()->json(['message' => 'Successful registration!']);
     }
 
     /**

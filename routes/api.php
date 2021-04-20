@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,18 +31,18 @@ Route::prefix('auth')->group(function () {
     Route::post('me', 'AuthController@me');
 });
 
-Route::prefix('monitor')->group(function () {
+Route::prefix('monitors')->group(function () {
     Route::get('/', 'MonitorController@index');
-    Route::post('store', 'MonitorController@store');
-    Route::post('update/{monitor}', 'MonitorController@update')->middleware('can:update,monitor');
-    Route::delete('destroy/{monitor}', 'MonitorController@destroy')->middleware('can:destroy,monitor');
+    Route::post('/', 'MonitorController@store');
+    Route::put('/{monitor}', 'MonitorController@update')->middleware('can:update,monitor');
+    Route::delete('/{monitor}', 'MonitorController@destroy')->middleware('can:destroy,monitor');
 });
 
-Route::prefix('contact')->group(function () {
+Route::prefix('contacts')->group(function () {
     Route::get('/', 'ContactController@index');
-    Route::post('store', 'ContactController@store');
-    Route::post('update/{contact}', 'ContactController@update')->middleware('can:update,contact');
-    Route::delete('destroy/{contact}', 'ContactController@destroy')->middleware('can:destroy,contact');
+    Route::post('/', 'ContactController@store');
+    Route::put('/{contact}', 'ContactController@update')->middleware('can:update,contact');
+    Route::delete('/{contact}', 'ContactController@destroy')->middleware('can:destroy,contact');
 });
 
 Route::get('checkstatus', 'App\Models\Monitor@checkStatus');

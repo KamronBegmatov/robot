@@ -5,11 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MonitorResource;
 use App\Models\Contact;
 use App\Models\Monitor;
-use App\Policies\MonitorPolicy;
-use Eloquent;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Tymon\JWTAuth\Contracts\Providers\Auth;
 
 class MonitorController extends Controller
 {
