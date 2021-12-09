@@ -20,25 +20,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6a173eb-44d6-4265-a3c8-b449509182e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/emails/notify_up_status.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Telegram/Commands/HelpCommand.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/robot.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/robot.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MonitorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MonitorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/NotifyStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/NotifyDownStatus.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Monitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Monitor.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_29_144302_create_user_from_googles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_29_144302_create_user_from_googles_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_27_115405_create_down_times_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_27_115405_create_down_times_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/notify_status.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/notify_down_status.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/flare.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/ide-helper.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/ignition.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/session.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/session.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/telegram.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/telegram.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/tinker.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/trustedproxy.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/7.4/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/7.4/php.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/7.4/start-container" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/7.4/supervisord.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/8.0/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/8.0/php.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/8.0/start-container" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/8.0/supervisord.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/401.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/403.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/404.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/419.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/429.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/500.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/503.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/illustrated-layout.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/layout.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/errors/minimal.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/button.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/footer.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/header.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/layout.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/message.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/panel.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/subcopy.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/table.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/html/themes/default.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/button.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/footer.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/header.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/layout.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/message.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/panel.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/subcopy.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/mail/text/table.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/notifications/email.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/bootstrap-4.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/default.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/semantic-ui.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/simple-bootstrap-4.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/simple-default.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/simple-tailwind.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/tailwind.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,9 +127,7 @@
       <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
       <path value="$PROJECT_DIR$/vendor/ramsey/uuid" />
       <path value="$PROJECT_DIR$/vendor/vlucas/phpdotenv" />
-      <path value="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir" />
       <path value="$PROJECT_DIR$/vendor/egulias/email-validator" />
-      <path value="$PROJECT_DIR$/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/vendor/laravel/sail" />
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/vendor/mockery/mockery" />
@@ -187,6 +226,8 @@
       <path value="$PROJECT_DIR$/vendor/react/promise" />
       <path value="$PROJECT_DIR$/vendor/league/event" />
       <path value="$PROJECT_DIR$/vendor/irazasyed/telegram-bot-sdk" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/laravel/framework" />
     </include_path>
   </component>
   <component name="ProjectId" id="1nYIhqpepLljHGwsZGfGr2hpqMZ" />
@@ -199,7 +240,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kindergarten" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
@@ -229,7 +270,32 @@
       <workItem from="1616238503360" duration="2547000" />
       <workItem from="1616504088270" duration="777000" />
       <workItem from="1616561121103" duration="58668000" />
-      <workItem from="1618222272549" duration="37678000" />
+      <workItem from="1618222272549" duration="93348000" />
+      <workItem from="1619182754420" duration="4664000" />
+      <workItem from="1620021879188" duration="6204000" />
+      <workItem from="1620638611133" duration="2145000" />
+      <workItem from="1620795142726" duration="1813000" />
+      <workItem from="1621339403478" duration="3158000" />
+      <workItem from="1622531417250" duration="1197000" />
+      <workItem from="1622627788948" duration="2024000" />
+      <workItem from="1622635130626" duration="4000" />
+      <workItem from="1622637349014" duration="638000" />
+      <workItem from="1622733076212" duration="2024000" />
+      <workItem from="1622735640346" duration="3087000" />
+      <workItem from="1632478915266" duration="1189000" />
+      <workItem from="1633502696506" duration="13000" />
+      <workItem from="1633503142294" duration="14000" />
+      <workItem from="1633503163414" duration="11000" />
+      <workItem from="1633503838990" duration="228000" />
+      <workItem from="1633505370927" duration="619000" />
+      <workItem from="1633693455801" duration="23000" />
+      <workItem from="1633693493889" duration="10000" />
+      <workItem from="1638011218557" duration="764000" />
+      <workItem from="1638012716570" duration="537000" />
+      <workItem from="1638013380807" duration="10000" />
+      <workItem from="1638013907946" duration="5000" />
+      <workItem from="1638014019776" duration="5000" />
+      <workItem from="1638015118079" duration="527000" />
     </task>
     <servers />
   </component>

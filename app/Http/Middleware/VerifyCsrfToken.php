@@ -12,6 +12,6 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'http://localhost:8000/api/I4Bxu3px07ap1mlYncNMVwFgDWRyccZSlvpc2t7xtiaug7Xjlw4mxFt2kGcOamrz/webhook',
     ];
 }

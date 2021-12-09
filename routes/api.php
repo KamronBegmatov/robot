@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Telegram\Bot\Api;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
+Route::post('I4Bxu3px07ap1mlYncNMVwFgDWRyccZSlvpc2t7xtiaug7Xjlw4mxFt2kGcOamrz/webhook', function () {
+    $telegram = new Api(config("telegram.bots.mybot.token"));
+    $update = $telegram->addCommand(App\Telegram\Commands\HelpCommand::class);
+    $updates = $telegram->commandsHandler(true);
+});
 
 Route::prefix('auth')->middleware(['web'])->group(function ($router) {
     Route::get('redirect', 'UserFromGoogleController@redirect');

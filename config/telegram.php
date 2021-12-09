@@ -33,12 +33,13 @@ return [
     */
     'bots'                         => [
         'mybot' => [
-            'username'            => 'UzWebStatusBot',
-            'token'               => env('TELEGRAM_BOT_TOKEN', '1721480298:AAFhqTqA3HJGcXcJypzs2HEE3Hs9Y4D7j_M'),
+            'username'            => env('TELEGRAM_BOT_NAME', 'YOUR_BOT_NAME'),
+            'token'               => env('TELEGRAM_BOT_TOKEN', 'YOUR-BOT-TOKEN'),
             'certificate_path'    => env('TELEGRAM_CERTIFICATE_PATH', 'YOUR-CERTIFICATE-PATH'),
             'webhook_url'         => env('TELEGRAM_WEBHOOK_URL', 'YOUR-BOT-WEBHOOK-URL'),
             'commands'            => [
-                //Acme\Project\Commands\MyTelegramBot\BotCommand::class
+                //Acme\Project\Commands\MyTelegramBot\BotCommand::class,
+                App\Telegram\Commands\HelpCommand::class,
             ],
         ],
 
@@ -116,7 +117,7 @@ return [
     |
     */
     'commands'                     => [
-        Telegram\Bot\Commands\HelpCommand::class,
+        //Telegram\Bot\Commands\HelpCommand::class,
     ],
 
     /*

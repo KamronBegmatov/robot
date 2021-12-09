@@ -7,7 +7,10 @@ use App\Mail\NotifyUpStatus;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Telegram\Bot\Api;
+use Telegram\Bot\Exceptions\TelegramSDKException;
 
 /**
  * App\Models\Monitor
@@ -69,29 +72,39 @@ class Monitor extends Model
 
     public static function checkStatus()
     {
-        $success = array();
-        foreach (Monitor::all() as $monitor) {
-            $url = $monitor->url;
-            if (Monitor::url_test($url)) {
-                array_push($success, $url);
-                $contact_id = DB::table('monitor_contact')->where('monitor_id', $monitor->id)->first()->contact_id;
-                $contact = Contact::findOrFail($contact_id);
-                if($contact->ups_downs == self::UP || $contact->ups_downs == self::UP_DOWN) {
-                    $monitor = Monitor::findOrFail($monitor->id);
-                    Mail::to($contact->email)->send(new NotifyUpStatus($monitor));
-                }
-            } else {
-                $down_time = DownTime::create([
-                    'monitor_id' => $monitor->id,
-                    'down' => 1,
-                ]);
-                $contact_id = DB::table('monitor_contact')->where('monitor_id', $monitor->id)->first()->contact_id;
-                $contact = Contact::findOrFail($contact_id);
-                if($contact->ups_downs == self::DOWN || $contact->ups_downs == self::UP_DOWN) {
-                    $monitor = Monitor::findOrFail($monitor->id);
-                    Mail::to($contact->email)->send(new NotifyDownStatus($monitor, $down_time));
-                }
-            }
-        }
+        $telegram = new Api(config("telegram.bots.mybot.token"));
+        $updates = $telegram->getUpdates();
+        dd($updates);
+        $response = $telegram->sendMessage([
+            //'chat_id' => 983325842,
+            //'chat_id' =>  1689014631,
+            //'chat_id' =>  74968452, beka
+            'text' => 'hello!'
+        ]);
+
+//        $success = array();
+//        foreach (Monitor::all() as $monitor) {
+//            $url = $monitor->url;
+//            if (Monitor::url_test($url)) {
+//                array_push($success, $url);
+//                $contact_id = DB::table('monitor_contact')->where('monitor_id', $monitor->id)->first()->contact_id;
+//                $contact = Contact::findOrFail($contact_id);
+//                if($contact->ups_downs == self::UP || $contact->ups_downs == self::UP_DOWN) {
+//                    $monitor = Monitor::findOrFail($monitor->id);
+//                    Mail::to($contact->email)->send(new NotifyUpStatus($monitor));
+//                }
+//            } else {
+//                $down_time = DownTime::create([
+//                    'monitor_id' => $monitor->id,
+//                    'down' => 1,
+//                ]);
+//                $contact_id = DB::table('monitor_contact')->where('monitor_id', $monitor->id)->first()->contact_id;
+//                $contact = Contact::findOrFail($contact_id);
+//                if($contact->ups_downs == self::DOWN || $contact->ups_downs == self::UP_DOWN) {
+//                    $monitor = Monitor::findOrFail($monitor->id);
+//                    Mail::to($contact->email)->send(new NotifyDownStatus($monitor, $down_time));
+//                }
+//            }
+//        }
     }
 }
